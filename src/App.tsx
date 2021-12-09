@@ -38,6 +38,7 @@ export default function App() {
  
   const reset = React.useCallback(() => {
     setSec(0);
+    setStatus("run");
   }, []);
  
   const wait = React.useCallback(() => {
