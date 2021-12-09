@@ -1,0 +1,43 @@
+.page {
+  margin: 0px;
+  margin-left: 35%;
+  margin-top: 20%;
+}
+
+.body {
+  border: 5px solid red;
+  border-radius: 10px;
+  width: 400px;
+  height: 100px;
+  align-items: center;
+  padding-top: center;
+}
+
+.clock {
+  font-size: 50px;
+  padding-left: 10px;
+}
+
+.start-button {
+  width: 180px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: seagreen;
+  color:seashell;
+  font-size: 15px;
+}
+
+.stop-button {
+  width: 180px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  color:seashell;
+  background-color: salmon;
+  font-size: 15px;
+}
+.button {
+  width: 50px;
+  margin: 10px;
+  border-radius: 10px;
+}
