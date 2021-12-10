@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { useEffect, useState } from "react";
 import { interval, Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
+import { buffer, debounceTime, filter, map, takeUntil } from "rxjs/operators";
 
 import "./App.scss";
  
@@ -11,16 +11,26 @@ type Prop = "run" | "stop" | "wait";
 export default function App() {
   const [sec, setSec] = useState(0);
   const [status, setStatus] = useState<Prop>("stop");
+  const click = useMemo(() => new Subject(), []);
  
   useEffect(() => {
     const sub = new Subject();
-    interval(1000)
+
+    const doubleClick = click.pipe(
+      buffer(click.pipe(debounceTime(250))),
+      map((list) => list.length),
+      filter((val) => val >= 2),
+    );
+
+     interval(1000)
+      .pipe(takeUntil(doubleClick))
       .pipe(takeUntil(sub))
       .subscribe(() => {
         if (status === "run") {
           setSec(val => val + 1000);
         }
       });
+      
     return () => {
       sub.next(1);
       sub.complete();
